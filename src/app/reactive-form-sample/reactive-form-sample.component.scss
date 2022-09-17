@@ -1,0 +1,28 @@
+section {
+  margin-bottom: 1rem;
+}
+
+table, th, td {
+  border-collapse: collapse;
+  border: 1px solid #333;
+  margin-bottom: 1rem;
+}
+
+tbody {
+  text-align: left;
+}
+
+th, td {
+  padding: 0.5rem;
+}
+
+.preview-container {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.preview {
+  padding: 1rem;
+  background: lightgray;
+}

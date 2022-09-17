@@ -1,0 +1,141 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <section>
+    <div>名前</div>
+    <input
+      [ngClass]="{'input-error': (name.touched || name.dirty) && name.invalid}"
+      type="text" formControlName="name" placeholder="佐々木一郎"
+    >
+    <div
+      *ngIf="(name.touched || name.dirty) && name.hasError('required')"
+      class="error"
+    >名前を入力してください。</div>
+    <div
+      *ngIf="(name.touched || name.dirty) && name.hasError('maxlength')"
+      class="error"
+    >50文字以下で入力してください。
+    </div>
+  </section>
+
+  <section>
+    <div>性別</div>
+    <label>
+      <input formControlName="gender" type="radio" name="gender" value="male">男性
+    </label>
+    <label>
+      <input formControlName="gender" type="radio" name="gender" value="female">女性
+    </label>
+  </section>
+
+  <section formGroupName="roles">
+    <div>役割</div>
+    <label>
+      <input type="checkbox" formControlName="frontend">Frontend
+    </label>
+    <label>
+      <input type="checkbox" formControlName="backend">Backend
+    </label>
+    <label>
+      <input type="checkbox" formControlName="sre">SRE
+    </label>
+  </section>
+
+  <section formArrayName="skills">
+    <div
+      *ngFor="let skill of skills.controls; let i = index"
+      [formGroupName]="i"
+    >
+      <label>
+        <input type="text" formControlName="skill" placeholder="TypeScript">
+        <span
+          *ngIf="
+            skill.get('skill')?.touched &&
+            skill.get('skill')?.hasError('required')
+          "
+          class="error"
+        >必須入力です</span>
+      </label>
+      <label>
+        <input type="number" formControlName="years" placeholder="4">年
+        <span
+          *ngIf="
+            skill.get('years')?.touched && skill.get('years')?.hasError('required')
+          "
+          class="error"
+        >必須入力です</span>
+      </label>
+      <button type="button" (click)="removeSkill(i)">削除</button>
+    </div>
+  </section>
+
+  <button type="button" (click)="addSkill()">スキル追加</button>
+  <button [disabled]="form.invalid || form.pristine">送信</button>
+</form>
+
+<hr>
+
+<h3>name</h3>
+<div class="preview-container">
+  <table>
+    <tbody>
+    <tr>
+      <th>name.invalid</th>
+      <td>{{ name.invalid }}</td>
+    </tr>
+    <tr>
+      <th>name.dirty</th>
+      <td>{{ name.dirty }}</td>
+    </tr>
+    <tr>
+      <th>name.pristine</th>
+      <td>{{ name.pristine }}</td>
+    </tr>
+    </tbody>
+  </table>
+  <ng-container
+    *ngTemplateOutlet="previewTemplate;
+    context:{ previewTitle: 'name.value', value: name.value }">
+  </ng-container>
+  <ng-container
+    *ngTemplateOutlet="previewTemplate;
+    context:{ previewTitle: 'name.errors', value: name.errors }">
+  </ng-container>
+</div>
+
+<h3>form</h3>
+<div class="preview-container">
+  <table>
+    <tbody>
+    <tr>
+      <th>form.invalid</th>
+      <td>{{ form.invalid }}</td>
+    </tr>
+    <tr>
+      <th>form.dirty</th>
+      <td>{{ form.dirty }}</td>
+    </tr>
+    <tr>
+      <th>form.pristine</th>
+      <td>{{ form.pristine }}</td>
+    </tr>
+    </tbody>
+  </table>
+  <ng-container
+    *ngTemplateOutlet="previewTemplate;
+    context:{ previewTitle: 'form.value', value: form.value }">
+  </ng-container>
+  <ng-container
+    *ngTemplateOutlet="previewTemplate;
+    context:{ previewTitle: 'form.errors', value: form.errors }">
+  </ng-container>
+</div>
+
+<ng-template
+  #previewTemplate
+  let-previewTitle="previewTitle"
+  let-value="value"
+>
+  <div class="preview">
+    <b>{{ previewTitle }}</b>
+    <pre>{{ value | json }}</pre>
+  </div>
+</ng-template>
