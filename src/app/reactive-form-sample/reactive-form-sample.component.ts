@@ -96,7 +96,7 @@ export class ReactiveFormSampleComponent implements OnInit, OnDestroy {
 
   submit() {
     this.isSubmitted = true;
-    console.log(this.form)
+    console.log(this.form.value)
   }
 
 }
