@@ -73,61 +73,65 @@
 
 <hr>
 
-<h3>name</h3>
-<div class="preview-container">
-  <table>
-    <tbody>
-    <tr>
-      <th>name.invalid</th>
-      <td>{{ name.invalid }}</td>
-    </tr>
-    <tr>
-      <th>name.dirty</th>
-      <td>{{ name.dirty }}</td>
-    </tr>
-    <tr>
-      <th>name.pristine</th>
-      <td>{{ name.pristine }}</td>
-    </tr>
-    </tbody>
-  </table>
-  <ng-container
-    *ngTemplateOutlet="previewTemplate;
+<section>
+  <h2>nameの状態</h2>
+  <div class="preview-container">
+    <table>
+      <tbody>
+      <tr>
+        <th>name.invalid</th>
+        <td>{{ name.invalid }}</td>
+      </tr>
+      <tr>
+        <th>name.dirty</th>
+        <td>{{ name.dirty }}</td>
+      </tr>
+      <tr>
+        <th>name.pristine</th>
+        <td>{{ name.pristine }}</td>
+      </tr>
+      </tbody>
+    </table>
+    <ng-container
+      *ngTemplateOutlet="previewTemplate;
     context:{ previewTitle: 'name.value', value: name.value }">
-  </ng-container>
-  <ng-container
-    *ngTemplateOutlet="previewTemplate;
+    </ng-container>
+    <ng-container
+      *ngTemplateOutlet="previewTemplate;
     context:{ previewTitle: 'name.errors', value: name.errors }">
-  </ng-container>
-</div>
+    </ng-container>
+  </div>
+</section>
 
-<h3>form</h3>
-<div class="preview-container">
-  <table>
-    <tbody>
-    <tr>
-      <th>form.invalid</th>
-      <td>{{ form.invalid }}</td>
-    </tr>
-    <tr>
-      <th>form.dirty</th>
-      <td>{{ form.dirty }}</td>
-    </tr>
-    <tr>
-      <th>form.pristine</th>
-      <td>{{ form.pristine }}</td>
-    </tr>
-    </tbody>
-  </table>
-  <ng-container
-    *ngTemplateOutlet="previewTemplate;
+<section>
+  <h2>formの状態</h2>
+  <div class="preview-container">
+    <table>
+      <tbody>
+      <tr>
+        <th>form.invalid</th>
+        <td>{{ form.invalid }}</td>
+      </tr>
+      <tr>
+        <th>form.dirty</th>
+        <td>{{ form.dirty }}</td>
+      </tr>
+      <tr>
+        <th>form.pristine</th>
+        <td>{{ form.pristine }}</td>
+      </tr>
+      </tbody>
+    </table>
+    <ng-container
+      *ngTemplateOutlet="previewTemplate;
     context:{ previewTitle: 'form.value', value: form.value }">
-  </ng-container>
-  <ng-container
-    *ngTemplateOutlet="previewTemplate;
+    </ng-container>
+    <ng-container
+      *ngTemplateOutlet="previewTemplate;
     context:{ previewTitle: 'form.errors', value: form.errors }">
-  </ng-container>
-</div>
+    </ng-container>
+  </div>
+</section>
 
 <ng-template
   #previewTemplate
